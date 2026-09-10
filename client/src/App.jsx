@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import heroImg from './assets/hero.png'
+import './App.css'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
-import './App.css'
+import Images from './Images'
+import UserInfo from './UserInfo'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -10,11 +11,10 @@ function App() {
   return (
     <>
       <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
+        <Images></Images>
+        <UserInfo name="Nasreen" course="CS418"></UserInfo>
+        <UserInfo name="John" course="CS432"></UserInfo>
+        <UserInfo name="Sara" course="CS462">Sara is a brilliant student</UserInfo>
         <div>
           <h1>Get started</h1>
           <p>
@@ -118,5 +118,7 @@ function App() {
     </>
   )
 }
+
+
 
 export default App
