@@ -5,6 +5,7 @@ import './App.css';
 import Dashboard from "./Dashboard.jsx";
 import Header from "./Header.jsx";
 // import Images from './Images';
+import { FocusEmail, RefCounter, StateCounter } from "./EscapeHatchesDemo.jsx";
 import Login from "./Login.jsx";
 import Signup from "./Signup.jsx";
 import VerifyOtp from "./VerifyOtp.jsx";
@@ -122,6 +123,18 @@ function App() {
       <section id="spacer"></section> */}
       <Router>
         <Header />
+        <h1 class="text-3xl font-bold underline">
+          Hello world!
+        </h1>
+        <StateCounter></StateCounter>
+        <br></br>
+        <RefCounter></RefCounter>
+        <br>
+        </br>
+        <FocusEmail></FocusEmail>
+        <br>
+        </br>
+        {/* <Timer></Timer> */}
         <main>
           <Routes>
             <Route path="/login" element={<Login />} />
