@@ -39,7 +39,7 @@ app.use(
         cookie: {
             httpOnly: true,   // JS cannot read cookie
             secure: true,    // true in production with HTTPS
-            sameSite: "lax",
+            sameSite: "none", // change from lax to none for deployment
             maxAge: 1000 * 60 * 60, // 1 hour
         },
     })
