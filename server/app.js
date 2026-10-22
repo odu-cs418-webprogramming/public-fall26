@@ -10,6 +10,9 @@ import user from './routes/user.js';
 const app = express();
 const port = 8080;
 
+// Required behind a reverse proxy so secure cookies are issued
+app.set('trust proxy', 1);
+
 app.listen(port, () => {
     console.log(`Server is listening to ${port}`);
 })
