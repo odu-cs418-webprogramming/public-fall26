@@ -23,7 +23,7 @@ app.listen(port, () => {
 
 //To allow cross origins
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: process.env.CORS_ORIGIN,
     credentials: true,// added after cookie-session
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type']
