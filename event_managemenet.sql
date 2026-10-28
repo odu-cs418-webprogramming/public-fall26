@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 24, 2026 at 04:54 AM
+-- Generation Time: Oct 22, 2026 at 05:55 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,20 @@ SET time_zone = "+00:00";
 --
 -- Database: `event_managemenet`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `email_otp`
+--
+
+CREATE TABLE `email_otp` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `otp` varchar(10) NOT NULL,
+  `expires_at` datetime NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -41,11 +55,19 @@ CREATE TABLE `user_info` (
 --
 
 INSERT INTO `user_info` (`u_id`, `u_first_name`, `u_last_name`, `u_email`, `u_password`, `u_is_verified`) VALUES
-(1, 'Nasreen', 'Arif', 'narif@odu.edu', '123456789', 1);
+(1, 'Nasreen', 'Arif', 'narif@odu.edu', '123456789', 1),
+(6, 'Test', 'Test post request', 'nasreenarif95@gmail.com', '$2b$10$9INAcEezXnWiR8R.fPO1QeXSmmomZbDL5ySWc.26KvK9d1rvGBvRi', 1);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `email_otp`
+--
+ALTER TABLE `email_otp`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indexes for table `user_info`
@@ -58,10 +80,16 @@ ALTER TABLE `user_info`
 --
 
 --
+-- AUTO_INCREMENT for table `email_otp`
+--
+ALTER TABLE `email_otp`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
