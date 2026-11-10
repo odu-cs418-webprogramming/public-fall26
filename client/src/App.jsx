@@ -1,5 +1,6 @@
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import './App.css';
+import CourseHelp from './CourseHelp.jsx';
 // import reactLogo from './assets/react.svg';
 // import viteLogo from './assets/vite.svg';
 import Dashboard from "./Dashboard.jsx";
@@ -10,6 +11,17 @@ import Login from "./Login.jsx";
 import Signup from "./Signup.jsx";
 import VerifyOtp from "./VerifyOtp.jsx";
 // import UserInfo from './UserInfo';
+
+function EarlierDemos() {
+  const { pathname } = useLocation();
+  if (pathname === '/course-help') return null;
+  return <>
+    <h1 className="text-3xl font-bold underline">Hello world!</h1>
+    <StateCounter /><br />
+    <RefCounter /><br />
+    <FocusEmail /><br />
+  </>;
+}
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -122,21 +134,12 @@ function App() {
       <div className="ticks"></div>
       <section id="spacer"></section> */}
       <Router>
+        {/* <a className="skip-link" href="#main-content">Skip to main content</a> */}
         <Header />
-        <h1 class="text-3xl font-bold underline">
-          Hello world!
-        </h1>
-        <StateCounter></StateCounter>
-        <br></br>
-        <RefCounter></RefCounter>
-        <br>
-        </br>
-        <FocusEmail></FocusEmail>
-        <br>
-        </br>
-        {/* <Timer></Timer> */}
-        <main>
+        <EarlierDemos />
+        <main id="main-content" tabIndex={-1}>
           <Routes>
+            <Route path="/course-help" element={<CourseHelp />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/signup" element={<Signup />} />

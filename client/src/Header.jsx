@@ -3,8 +3,13 @@ import './Header.css';
 
 export default function Header() {
     return (
-        <nav className="header-nav">
+        <nav className="header-nav" aria-label="Main navigation">
             <ul>
+                <li>
+                    <NavLink to="/course-help" className={({ isActive }) => isActive ? "active-link" : ""}>
+                        Course help
+                    </NavLink>
+                </li>
                 <li>
                     <NavLink
                         to="/login"
