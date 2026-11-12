@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
@@ -9,6 +10,8 @@ export default function Login() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [token, setToken] = useState(null);
+
 
     const navigate = useNavigate();
 
@@ -32,9 +35,33 @@ export default function Login() {
             return;
         }
 
+        if (!token) {
+            setError("Please complete the reCAPTCHA.");
+            return;
+        }
+
         setLoading(true);
 
         try {
+
+
+            // Step 0: Verify reCAPTCHA token
+            const captchaRes = await fetch(
+                import.meta.env.VITE_API_KEY + "user/verify-recaptcha",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ token }),
+                }
+            );
+
+            const captchaJson = await captchaRes.json().catch(() => ({}));
+
+            if (!captchaRes.ok) {
+                setError(captchaJson?.message || "reCAPTCHA verification failed.");
+                return;
+            }
+
             const res = await fetch(import.meta.env.VITE_API_KEY + "user/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -125,6 +152,7 @@ export default function Login() {
                         />
                     </p>
                 </div>
+                <ReCAPTCHA sitekey={import.meta.env.VITE_SITE_KEY} onChange={(value) => setToken(value)} />
 
                 <div className="actions">
                     {/* Better UX: link to signup route */}
