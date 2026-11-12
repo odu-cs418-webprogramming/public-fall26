@@ -5,7 +5,9 @@ import cookieParser from 'cookie-parser';
 import cors from "cors";
 import express from 'express';
 import session from "express-session";
+import helmet from 'helmet';
 import user from './routes/user.js';
+
 
 const app = express();
 const port = 8080;
@@ -33,6 +35,16 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(cookieParser());
+app.use(helmet());
+
+app.use(
+    helmet.contentSecurityPolicy({
+        directives: {
+            defaultSrc: ["'self'"],
+            frameAncestors: ["'self'"], // prevent framing from other sites
+        },
+    })
+);
 
 app.use(
     session({

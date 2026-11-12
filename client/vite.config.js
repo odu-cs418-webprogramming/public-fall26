@@ -7,4 +7,10 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [react(), tailwindcss(),
   ],
+  server: {
+    headers: {
+      'content-security-policy': "frame-ancestors 'none'",
+      'x-frame-options': 'DENY'
+    }
+  }
 })
