@@ -1,0 +1,164 @@
+.cs418-chat {
+  position: fixed;
+  right: max(20px, env(safe-area-inset-right));
+  bottom: max(20px, env(safe-area-inset-bottom));
+  z-index: 1000;
+  color-scheme: light;
+  color: #1e293b;
+  font: 15px/1.5 system-ui, sans-serif;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+.cs418-chat *, .cs418-chat *::before, .cs418-chat *::after { box-sizing: border-box; }
+.cs418-chat button, .cs418-chat textarea { font: inherit; }
+.cs418-chat button { cursor: pointer; }
+.cs418-chat button:disabled { cursor: not-allowed; opacity: .55; }
+.cs418-chat button:focus-visible, .cs418-chat textarea:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 3px;
+}
+
+.cs418-chat__launcher {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  margin-left: auto;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 28px;
+  background: #174b7a;
+  color: #fff;
+  font-weight: 650;
+  box-shadow: 0 4px 16px #0f172a33;
+}
+.cs418-chat__launcher:hover { background: #113a60; }
+
+.cs418-chat__panel {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 12px);
+  display: flex;
+  flex-direction: column;
+  width: min(390px, calc(100vw - 40px));
+  height: min(550px, calc(100dvh - 116px));
+  border: 1px solid #d7dfe7;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 12px 42px #0f172a29;
+  overflow: hidden;
+}
+.cs418-chat__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 16px;
+  background: #174b7a;
+  color: #fff;
+}
+.cs418-chat__header h2 {
+  margin: 0 0 3px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 1.4;
+  letter-spacing: normal;
+}
+.cs418-chat__header p { margin: 0; color: #e0edfa; font-size: 12px; }
+.cs418-chat__close {
+  flex: 0 0 36px;
+  min-height: 36px;
+  border: 1px solid #ffffff66;
+  border-radius: 8px;
+  background: transparent;
+  color: #fff;
+  font-size: 25px !important;
+  line-height: 1;
+}
+.cs418-chat__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 14px;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 11px;
+}
+.cs418-chat__toolbar button {
+  flex-shrink: 0;
+  min-height: 36px;
+  padding: 5px 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #fff;
+  color: #174b7a;
+  font-size: 12px;
+}
+.cs418-chat__conversation {
+  flex: 1;
+  min-height: 0;
+  padding: 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #f8fafc;
+}
+.cs418-chat__welcome p:first-child { margin-bottom: 8px; font-weight: 650; }
+.cs418-chat__welcome p:last-child { color: #475569; }
+.cs418-chat__message {
+  width: fit-content;
+  max-width: 95%;
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px 12px 12px 3px;
+  background: #fff;
+}
+.cs418-chat__message--user {
+  margin-left: auto;
+  border-color: #cfdef0;
+  border-radius: 12px 12px 3px 12px;
+  background: #e8f1fb;
+}
+.cs418-chat__message strong { display: block; margin-bottom: 4px; font-size: 11px; }
+.cs418-chat__message p { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.cs418-chat__waiting { color: #475569; }
+.cs418-chat__error {
+  padding: 10px;
+  border: 1px solid #f5b4b4;
+  border-radius: 8px;
+  background: #fff1f2;
+  color: #9f1239;
+  overflow-wrap: anywhere;
+}
+.cs418-chat__form { padding: 12px 16px; border-top: 1px solid #e2e8f0; }
+.cs418-chat__form label { display: block; margin-bottom: 5px; font-size: 12px; font-weight: 650; }
+.cs418-chat__form textarea {
+  display: block;
+  width: 100%;
+  resize: none;
+  padding: 9px 10px;
+  border: 1px solid #94a3b8;
+  border-radius: 8px;
+  background: #fff;
+  color: #1e293b;
+  font-size: 16px;
+}
+.cs418-chat__form textarea::placeholder { color: #64748b; }
+.cs418-chat__actions { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 9px; }
+.cs418-chat__actions span { color: #64748b; font-size: 11px; }
+.cs418-chat__actions button {
+  min-height: 40px;
+  padding: 8px 18px;
+  border: 0;
+  border-radius: 8px;
+  background: #174b7a;
+  color: #fff;
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  .cs418-chat { right: max(12px, env(safe-area-inset-right)); bottom: max(12px, env(safe-area-inset-bottom)); }
+  .cs418-chat__panel { width: calc(100vw - 24px); height: min(550px, calc(100dvh - 100px)); }
+}

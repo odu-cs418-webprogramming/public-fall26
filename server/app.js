@@ -1,12 +1,14 @@
 // console.log("Testing app");
 
 
+import 'dotenv/config';
 import cookieParser from 'cookie-parser';
 import cors from "cors";
 import express from 'express';
 import session from "express-session";
 import helmet from 'helmet';
 import user from './routes/user.js';
+import chat from './routes/chat.js';
 
 
 const app = express();
@@ -33,7 +35,6 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type']
 }));
-app.use(express.json());
 app.use(cookieParser());
 app.use(helmet());
 
@@ -68,6 +69,9 @@ const requestTime = function (req, res, next) {
 }
 
 app.use(requestTime)
+// Chat parses its own JSON so it can return readable parsing errors.
+app.use('/api/chat', chat)
+app.use(express.json());
 app.use('/user', user)
 
 

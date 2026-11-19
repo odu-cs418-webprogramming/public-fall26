@@ -1,5 +1,6 @@
 import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import './App.css';
+import ChatWidget from './ChatWidget.jsx';
 import CourseHelp from './CourseHelp.jsx';
 // import reactLogo from './assets/react.svg';
 // import viteLogo from './assets/vite.svg';
@@ -21,6 +22,11 @@ function EarlierDemos() {
     <RefCounter /><br />
     <FocusEmail /><br />
   </>;
+}
+
+function HomeChat() {
+  const { pathname } = useLocation();
+  return pathname === '/' ? <ChatWidget /> : null;
 }
 
 function App() {
@@ -139,6 +145,7 @@ function App() {
         <EarlierDemos />
         <main id="main-content" tabIndex={-1}>
           <Routes>
+            <Route path="/" element={null} />
             <Route path="/course-help" element={<CourseHelp />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
@@ -146,6 +153,7 @@ function App() {
             <Route path="/verify-otp" element={<VerifyOtp />} />
           </Routes>
         </main>
+        <HomeChat />
       </Router>
     </>
   )
